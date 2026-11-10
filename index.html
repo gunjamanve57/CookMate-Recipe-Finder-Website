@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find delicious recipes using ingredients available in your kitchen with CookMate.">
+  <title>CookMate | Find your next favourite recipe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="script.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo"><span class="logo-icon">🍳</span> CookMate<span class="logo-dot">.</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#recipes">Explore recipes</a>
+        <a href="#favorites">Favourites <span id="favoriteCount" class="nav-count">0</span></a>
+        <a href="#about">About</a>
+      </nav>
+      <a class="nav-cta" href="#recipes">Find a recipe <span>↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-shape shape-one"></div>
+      <div class="hero-shape shape-two"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> YOUR KITCHEN, YOUR POSSIBILITIES</p>
+          <h1>Good food starts<br>with <em>what you have.</em></h1>
+          <p class="hero-description">Turn everyday ingredients into something delicious. Tell us what's in your kitchen and we'll find recipes for you.</p>
+          <form id="searchForm" class="search-panel">
+            <label class="search-label" for="searchInput">WHAT'S IN YOUR KITCHEN?</label>
+            <div class="search-row">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input id="searchInput" type="text" placeholder="e.g. potato, tomato, onion" autocomplete="off">
+              <button class="btn btn-primary" type="submit">Find recipes <span>→</span></button>
+            </div>
+            <p class="search-hint">Separate ingredients with commas. You can also search by recipe name.</p>
+          </form>
+          <div class="hero-note"><span class="note-check">✓</span> Simple ingredients. Inspiring meals. Less food waste.</div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-image-main">
+            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85" alt="Fresh colourful salad in a bowl">
+          </div>
+          <div class="floating-card">
+            <span class="floating-icon">🥑</span>
+            <div><strong>Cook something lovely</strong><small>With what you already have</small></div>
+          </div>
+          <div class="hero-stamp">FRESH<br><span>&</span> EASY</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-ideas container">
+      <span class="quick-label">TRY SEARCHING</span>
+      <button class="idea-chip" data-search="potato">🥔 Potato</button>
+      <button class="idea-chip" data-search="paneer">🧀 Paneer</button>
+      <button class="idea-chip" data-search="tomato">🍅 Tomato</button>
+      <button class="idea-chip" data-search="chicken">🍗 Chicken</button>
+      <button class="idea-chip" data-search="rice">🍚 Rice</button>
+    </section>
+
+    <section class="recipes-section container" id="recipes">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">A LITTLE INSPIRATION</p>
+          <h2 id="recipeHeading">Explore recipes</h2>
+          <p class="section-subtitle">A few delicious ideas to get you started.</p>
+        </div>
+        <div class="filter-wrap">
+          <label class="sr-only" for="categoryFilter">Filter by category</label>
+          <select id="categoryFilter">
+            <option value="">All categories</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Snack">Snack</option>
+            <option value="Dessert">Dessert</option>
+          </select>
+          <label class="sr-only" for="cuisineFilter">Filter by cuisine</label>
+          <select id="cuisineFilter">
+            <option value="">All cuisines</option>
+            <option value="Indian">Indian</option>
+            <option value="Italian">Italian</option>
+            <option value="International">International</option>
+          </select>
+        </div>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite">Loading recipes...</p>
+      <div id="recipeGrid" class="recipe-grid"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <div class="empty-emoji">🥣</div>
+        <h3>No recipes found</h3>
+        <p>Try another ingredient or clear your filters.</p>
+        <button id="resetSearch" class="btn btn-outline" type="button">Show all recipes</button>
+      </div>
+    </section>
+
+    <section class="favorites-section" id="favorites">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SAVED WITH LOVE</p>
+            <h2>Your favourites <span class="heading-heart">♥</span></h2>
+            <p class="section-subtitle">Recipes you want to come back to.</p>
+          </div>
+        </div>
+        <div id="favoriteGrid" class="recipe-grid"></div>
+        <p id="favoriteEmpty" class="favorite-empty">Your favourites will appear here. Tap the ♡ on any recipe to save it.</p>
+      </div>
+    </section>
+
+    <section class="about-section container" id="about">
+      <div class="about-icon">🥕</div>
+      <div>
+        <p class="eyebrow">ABOUT COOKMATE</p>
+        <h2>Make more of what you have.</h2>
+        <p>CookMate helps you discover meals using ingredients already available at home. It combines online recipe search with a small built-in recipe collection, so you can still explore ideas when the recipe API is unavailable.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#home" class="logo"><span class="logo-icon">🍳</span> CookMate<span class="logo-dot">.</span></a>
+      <p> Happy Cooking with CookMate!· © <span id="year"></span></p>
+      <a href="#home" class="back-top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn" type="button" aria-label="Close recipe details">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
